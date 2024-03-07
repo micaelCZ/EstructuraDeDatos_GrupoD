@@ -283,7 +283,7 @@ int main() {
         }
         // Dibuja la pantalla de dificultad si el juego no ha iniciado
         Punto siguiente = {serpiente.back().x + dir.x, serpiente.back().y + dir.y};
-        bool comio = false;
+        bool comio = false; // Indica si la serpiente comio una comida
         for (int i = 0; i < comidas.size(); i++) {
             if (siguiente.x == comidas[i].x && siguiente.y == comidas[i].y) {
                 sonidoComer.play(); // Reproduce el sonido de comer

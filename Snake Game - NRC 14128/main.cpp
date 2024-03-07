@@ -75,3 +75,13 @@ int main() {
     }
 } while (comidaEnSerpiente);
 comidas.push_back(comida);
+
+Punto dir = {1, 0};
+
+    int puntuacion = 0;
+    int logros = 0;
+    int velocidad = 100;
+
+    // Carga la fuente
+    Font fuente;
+    fuente.loadFromFile("Montserrat-Black.ttf");

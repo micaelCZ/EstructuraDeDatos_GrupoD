@@ -286,7 +286,7 @@ int main() {
         bool comio = false;
         for (int i = 0; i < comidas.size(); i++) {
             if (siguiente.x == comidas[i].x && siguiente.y == comidas[i].y) {
-                sonidoComer.play();
+                sonidoComer.play(); // Reproduce el sonido de comer
                 do {
                     comidaEnSerpiente = false;
                     comida = {rand() % 40, rand() % 30}; // Nueva posicion aleatoria de la comida

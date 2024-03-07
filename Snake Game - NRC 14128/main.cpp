@@ -73,3 +73,5 @@ int main() {
             break;
         }
     }
+} while (comidaEnSerpiente);
+comidas.push_back(comida);

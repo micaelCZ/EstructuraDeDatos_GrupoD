@@ -1,4 +1,8 @@
 //crear funcion de colision si la serpiente choca con esta misma 
+// importamos más bibliotecas que se utilizarán
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+#include <vector>
 #include <iostream>
 
 using namespace std;

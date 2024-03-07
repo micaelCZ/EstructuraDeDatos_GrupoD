@@ -192,14 +192,6 @@ void crearTextoPuntuacion(Text& textoPuntuacion, Font& fuente) {
 
 
 
-
-
-
-
-
-
-
-
 // Funcion principal
 int main() {
     SoundBuffer bufferComer, bufferColision, bufferHito;

@@ -23,3 +23,38 @@ bool colisionConSerpiente(const Punto& cabeza, const vector<Punto>& serpiente) {
 bool colisionConBorde(const Punto& cabeza, const RenderWindow& ventana) {
     return static_cast<unsigned int>(cabeza.x) < 0 || static_cast<unsigned int>(cabeza.y) < 0 || static_cast<unsigned int>(cabeza.x) >= ventana.getSize().x / 20 || static_cast<unsigned int>(cabeza.y) >= ventana.getSize().y / 20;
 }
+int main() {
+// Carga los sonidos
+    SoundBuffer bufferComer;
+    if (!bufferComer.loadFromFile("comer.wav")) {
+        cout << "Error al cargar el archivo de sonido 'comer.wav'" << endl;
+        return -1;
+    }
+    Sound sonidoComer;
+    sonidoComer.setBuffer(bufferComer);
+
+    SoundBuffer bufferColision;
+    if (!bufferColision.loadFromFile("colision.wav")) {
+        cout << "Error al cargar el archivo de sonido 'colision.wav'" << endl;
+        return -1;
+    }
+    Sound sonidoColision;
+    sonidoColision.setBuffer(bufferColision);
+
+    SoundBuffer bufferHito;
+    if (!bufferHito.loadFromFile("logro.wav")) {
+        cout << "Error al cargar el archivo de sonido 'logro.wav'" << endl;
+        return -1;
+    }
+    Sound sonidoHito;
+    sonidoHito.setBuffer(bufferHito);
+
+    // Carga la música de fondo
+    
+    Music musicaFondo;
+    if (!musicaFondo.openFromFile("musica.wav")) {
+        cout << "Error al cargar el archivo de música 'musica.wav'" << endl;
+        return -1;
+    }
+    musicaFondo.setLoop(true); // hace que la música se repita
+    musicaFondo.play();

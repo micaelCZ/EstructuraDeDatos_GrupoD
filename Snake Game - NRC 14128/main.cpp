@@ -263,7 +263,7 @@ int main() {
         for (int i = 0; i < comidas.size(); i++) {
             if (siguiente.x == comidas[i].x && siguiente.y == comidas[i].y) {
                 sonidoComer.play(); // Reproduce el sonido de comer
-                do {
+                do { // Comprueba si la comida se genera dentro de la serpiente y la vuelve a generar si es asi
                     comidaEnSerpiente = false;
                     comida = {rand() % 40, rand() % 30}; // Nueva posicion aleatoria de la comida
                     for (Punto p : serpiente) {

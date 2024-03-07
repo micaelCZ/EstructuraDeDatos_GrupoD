@@ -15,4 +15,7 @@ bool colisionConSerpiente(const Punto& cabeza, const vector<Punto>& serpiente) {
     }
     return false;
 }
-
+// añadir funcion de colision con los bordes
+bool colisionConBorde(const Punto& cabeza, const RenderWindow& ventana) {
+    return static_cast<unsigned int>(cabeza.x) < 0 || static_cast<unsigned int>(cabeza.y) < 0 || static_cast<unsigned int>(cabeza.x) >= ventana.getSize().x / 20 || static_cast<unsigned int>(cabeza.y) >= ventana.getSize().y / 20;
+}

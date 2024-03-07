@@ -284,15 +284,15 @@ int main() {
         // Dibuja la pantalla de dificultad si el juego no ha iniciado
         Punto siguiente = {serpiente.back().x + dir.x, serpiente.back().y + dir.y};
         bool comio = false; // Indica si la serpiente comio una comida
-        for (int i = 0; i < comidas.size(); i++) {
-            if (siguiente.x == comidas[i].x && siguiente.y == comidas[i].y) {
+        for (int i = 0; i < comidas.size(); i++) { 
+            if (siguiente.x == comidas[i].x && siguiente.y == comidas[i].y) { 
                 sonidoComer.play(); // Reproduce el sonido de comer
                 do { // Comprueba si la comida se genera dentro de la serpiente y la vuelve a generar si es asi
-                    comidaEnSerpiente = false;
+                    comidaEnSerpiente = false; 
                     comida = {rand() % 40, rand() % 30}; // Nueva posicion aleatoria de la comida
-                    for (Punto p : serpiente) {
-                        if (p.x == comida.x && p.y == comida.y) {
-                            comidaEnSerpiente = true;
+                    for (Punto p : serpiente) { 
+                        if (p.x == comida.x && p.y == comida.y) { 
+                            comidaEnSerpiente = true; 
                             break;
                         }
                     }

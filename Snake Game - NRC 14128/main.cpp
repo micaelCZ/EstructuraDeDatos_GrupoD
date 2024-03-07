@@ -58,3 +58,18 @@ int main() {
     }
     musicaFondo.setLoop(true); // hace que la música se repita
     musicaFondo.play();
+    vector<Punto> serpiente;
+    serpiente.push_back({rand() % 40, rand() % 30}); // Posición inicial aleatoria de la serpiente
+   
+    vector<Punto> comidas;
+    Punto comida;
+    bool comidaEnSerpiente;
+    do {
+    comidaEnSerpiente = false;
+    comida = {rand() % 40, rand() % 30}; // Posición inicial aleatoria de la comida
+    for (Punto p : serpiente) {
+        if (p.x == comida.x && p.y == comida.y) {
+            comidaEnSerpiente = true;
+            break;
+        }
+    }

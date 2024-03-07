@@ -61,6 +61,36 @@ void crearVentana(RenderWindow& ventana, RectangleShape& pixel) {
     pixel.setOutlineThickness(1);
     pixel.setOutlineColor(Color::Black);
 }
+// Función para inicializar la serpiente y la comida
+void inicializarSerpienteYComida(vector<Punto>& serpiente, vector<Punto>& comidas, Punto& comida) {
+    serpiente.push_back({rand() % 40, rand() % 30}); // Posición inicial aleatoria de la serpiente
+
+    bool comidaEnSerpiente;
+    do {
+        comidaEnSerpiente = false;
+        comida = {rand() % 40, rand() % 30}; // Posición inicial aleatoria de la comida
+        for (Punto p : serpiente) {
+            if (p.x == comida.x && p.y == comida.y) {
+                comidaEnSerpiente = true;
+                break;
+            }
+        }
+    } while (comidaEnSerpiente);
+    comidas.push_back(comida);
+}
+
+// Función para cargar la fuente
+void cargarFuente(Font& fuente) {
+    fuente.loadFromFile("Montserrat-Black.ttf");
+}
+
+// Función para crear el texto de la puntuación
+void crearTextoPuntuacion(Text& textoPuntuacion, Font& fuente) {
+    textoPuntuacion.setFont(fuente);
+    textoPuntuacion.setCharacterSize(24);
+    textoPuntuacion.setFillColor(Color::White);
+    textoPuntuacion.setPosition(10, 10);
+}
 
 
 

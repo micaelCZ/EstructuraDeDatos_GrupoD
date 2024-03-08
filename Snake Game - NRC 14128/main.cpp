@@ -154,7 +154,7 @@ void crearBotonesDificultad(Text& botonNormal, Text& botonDificil, Text& botonMu
 // Función para crear el texto de la pantalla de inicio
 void crearTextoInicio(Text& textoInicio1, Text& textoInicio2, Font& fuente, RenderWindow& ventana) {
     textoInicio1.setFont(fuente);
-    textoInicio1.setString("JUEGO DE LA SERPIENTE\n\n Proyecto Tercer Parcial\n\n              NRC 14180");
+    textoInicio1.setString("JUEGO DE LA SERPIENTE\n\n Proyecto Tercer Parcial\n\n              NRC 14128");
     textoInicio1.setCharacterSize(30);
     textoInicio1.setFillColor(Color::White);
     textoInicio1.setPosition(ventana.getSize().x / 2 - textoInicio1.getGlobalBounds().width / 2, ventana.getSize().y / 13);

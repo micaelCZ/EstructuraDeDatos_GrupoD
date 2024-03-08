@@ -86,7 +86,6 @@ void cargarFuente(Font& fuente) {
     fuente.loadFromFile("Montserrat-Black.ttf");
 }
 
-
 // Función para crear el texto de la puntuación
 void crearTextoPuntuacion(Text& textoPuntuacion, Font& fuente) {
     textoPuntuacion.setFont(fuente);
@@ -98,7 +97,7 @@ void crearTextoPuntuacion(Text& textoPuntuacion, Font& fuente) {
 // Función para crear el texto de la velocidad
 void crearTextoVelocidad(Text& textoVelocidad, Font& fuente) {
     textoVelocidad.setFont(fuente);
-    textoVelocidad.setString("\n\n+30 puntos: Velocidad aumentada\n+100 puntos: Logro desbloqueado\n+150 puntos: Otra bola más de comida");
+    textoVelocidad.setString("\n\n+50 puntos: Velocidad aumentada\n+100 puntos: Logro desbloqueado\n+150 puntos: Otra bola más de comida");
     textoVelocidad.setCharacterSize(24);
     textoVelocidad.setFillColor(Color::White);
     textoVelocidad.setPosition(10, 40); // Posiciona el texto debajo del texto de la puntuación
@@ -152,7 +151,6 @@ void crearBotonesDificultad(Text& botonNormal, Text& botonDificil, Text& botonMu
     botonMuyDificil.setPosition(ventana.getSize().x / 2 - botonMuyDificil.getGlobalBounds().width / 2, ventana.getSize().y / 2 + 100);
 }
 
-
 // Función para crear el texto de la pantalla de inicio
 void crearTextoInicio(Text& textoInicio1, Text& textoInicio2, Font& fuente, RenderWindow& ventana) {
     textoInicio1.setFont(fuente);
@@ -193,87 +191,114 @@ void iniciarJuego(bool& juegoIniciado, bool& juegoTerminado, vector<Punto>& serp
     logros = 0;
 }
 
-
 // Función principal
 int main() {
     SoundBuffer bufferComer, bufferColision, bufferHito;
     Sound sonidoComer, sonidoColision, sonidoHito;
     cargarSonidos(bufferComer, bufferColision, bufferHito, sonidoComer, sonidoColision, sonidoHito);
-    // Carga la musica de fondo
+
     Music musicaFondo;
     cargarMusica(musicaFondo);
-    // Crea la ventana y el pixel
+
     RenderWindow ventana;
     RectangleShape pixel;
     crearVentana(ventana, pixel);
-    // Inicializa la serpiente y la comida
+
     vector<Punto> serpiente;
     vector<Punto> comidas;
     Punto comida;
     inicializarSerpienteYComida(serpiente, comidas, comida);
-    // Carga la fuente
+
     Font fuente;
     cargarFuente(fuente);
-    // Crea el texto de la puntuacion
+
     Text textoPuntuacion;
     crearTextoPuntuacion(textoPuntuacion, fuente);
-    // Crea el texto de la velocidad
+
     Text textoVelocidad;
     crearTextoVelocidad(textoVelocidad, fuente);
-    // Crea los botones
+
     Text botonJugar, botonCerrar, botonReintentar, botonFinalizar;
     crearBotones(botonJugar, botonCerrar, botonReintentar, botonFinalizar, fuente, ventana);
-    // Crea los botones de dificultad
+
     Text botonNormal, botonDificil, botonMuyDificil;
     crearBotonesDificultad(botonNormal, botonDificil, botonMuyDificil, fuente, ventana);
-    // Crea el texto de la pantalla de inicio
+
     Text textoInicio1, textoInicio2;
     crearTextoInicio(textoInicio1, textoInicio2, fuente, ventana);
-    // Inicializa las variables del juego
+
     bool juegoIniciado = false;
     bool juegoTerminado = false;
     bool comidaEnSerpiente;
-    // Inicializa la direccion de la serpiente
+
     Punto dir = {1, 0};
     int puntuacion = 0;
     int logros = 0;
     int velocidad = 100;
-    // Bucle principal
+
     while (ventana.isOpen()) {
         Event evento;
         while (ventana.pollEvent(evento)) {
-            if (evento.type == Event::Closed) // Cierra la ventana si se presiona el boton de cerrar
+            if (evento.type == Event::Closed)
                 ventana.close();
-            else if (evento.type == Event::MouseButtonPressed) { //Si se presiona un boton del mouse...
-                if (botonJugar.getGlobalBounds().contains(ventana.mapPixelToCoords(Mouse::getPosition(ventana)))) { // ...y el boton de jugar...
-                    iniciarJuego(juegoIniciado, juegoTerminado, serpiente, comidas, comida, dir, puntuacion, logros); //...inicia el juego y carga los valores iniciales
+            else if (evento.type == Event::MouseButtonPressed) {
+                if (botonJugar.getGlobalBounds().contains(ventana.mapPixelToCoords(Mouse::getPosition(ventana)))) {
+                    // Muestra la pantalla de selección de dificultad
+                    ventana.clear();
+                    ventana.draw(botonNormal);
+                    ventana.draw(botonDificil);
+                    ventana.draw(botonMuyDificil);
+                    ventana.display();
+                    while (true) {
+                        Event eventoDificultad;
+                        while (ventana.pollEvent(eventoDificultad)) {
+                            if (eventoDificultad.type == Event::MouseButtonPressed) {
+                                if (botonNormal.getGlobalBounds().contains(ventana.mapPixelToCoords(Mouse::getPosition(ventana)))) {
+                                    velocidad = 100; // Velocidad normal
+                                    iniciarJuego(juegoIniciado, juegoTerminado, serpiente, comidas, comida, dir, puntuacion, logros);
+                                    break;
+                                }
+                                else if (botonDificil.getGlobalBounds().contains(ventana.mapPixelToCoords(Mouse::getPosition(ventana)))) {
+                                    velocidad = 70; // Velocidad rápida
+                                    iniciarJuego(juegoIniciado, juegoTerminado, serpiente, comidas, comida, dir, puntuacion, logros);
+                                    break;
+                                }
+                                else if (botonMuyDificil.getGlobalBounds().contains(ventana.mapPixelToCoords(Mouse::getPosition(ventana)))) {
+                                    velocidad = 40; // Velocidad muy rápida
+                                    iniciarJuego(juegoIniciado, juegoTerminado, serpiente, comidas, comida, dir, puntuacion, logros);
+                                    break;
+                                }
+                            }
+                        }
+                        if (juegoIniciado) break;
+                    }
                 }
-                if (botonCerrar.getGlobalBounds().contains(ventana.mapPixelToCoords(Mouse::getPosition(ventana)))) { // Boton de cerrar
+                else if (botonCerrar.getGlobalBounds().contains(ventana.mapPixelToCoords(Mouse::getPosition(ventana)))) {
                     ventana.close();
                 }
-                if (juegoTerminado && botonReintentar.getGlobalBounds().contains(ventana.mapPixelToCoords(Mouse::getPosition(ventana)))) { // Boton de reintentar
+                else if (juegoTerminado && botonReintentar.getGlobalBounds().contains(ventana.mapPixelToCoords(Mouse::getPosition(ventana)))) {
                     iniciarJuego(juegoIniciado, juegoTerminado, serpiente, comidas, comida, dir, puntuacion, logros);
                 }
-                if (juegoTerminado && botonFinalizar.getGlobalBounds().contains(ventana.mapPixelToCoords(Mouse::getPosition(ventana)))) { // Boton de finalizar
+                else if (juegoTerminado && botonFinalizar.getGlobalBounds().contains(ventana.mapPixelToCoords(Mouse::getPosition(ventana)))) {
                     ventana.close();
                 }
             }
-            else if (evento.type == Event::KeyPressed) { // Cambia la direccion de la serpiente si se presiona una tecla
+            else if (evento.type == Event::KeyPressed) {
                 Punto nuevaDir;
                 switch (evento.key.code) {
-                    case Keyboard::Up:    nuevaDir = { 0, -1}; break; //Tecla Arriba
-                    case Keyboard::Down:  nuevaDir = { 0,  1}; break; //Tecla Abajo
-                    case Keyboard::Left:  nuevaDir = {-1,  0}; break; //Tecla Izquierda
-                    case Keyboard::Right: nuevaDir = { 1,  0}; break; //Tecla Derecha
+                    case Keyboard::Up:    nuevaDir = { 0, -1}; break;
+                    case Keyboard::Down:  nuevaDir = { 0,  1}; break;
+                    case Keyboard::Left:  nuevaDir = {-1,  0}; break;
+                    case Keyboard::Right: nuevaDir = { 1,  0}; break;
                     default: break;
                 }
-                // Comprueba si la nueva direccion es opuesta a la direccion actual
+                // Comprueba si la nueva dirección es opuesta a la dirección actual
                 if (nuevaDir.x != -dir.x || nuevaDir.y != -dir.y) {
                     dir = nuevaDir;
                 }
             }
         }
-        // Dibuja la pantalla de inicio si el juego no ha iniciado
+
         if (!juegoIniciado) {
             ventana.clear();
             ventana.draw(textoInicio1);
@@ -283,18 +308,106 @@ int main() {
             ventana.display();
             continue;
         }
-        // Dibuja la pantalla de dificultad si el juego no ha iniciado
+
         Punto siguiente = {serpiente.back().x + dir.x, serpiente.back().y + dir.y};
-        bool comio = false; // Indica si la serpiente comio una comida
+        bool comio = false;
         for (int i = 0; i < comidas.size(); i++) {
             if (siguiente.x == comidas[i].x && siguiente.y == comidas[i].y) {
-                sonidoComer.play(); // Reproduce el sonido de comer
-                do { // Comprueba si la comida se genera dentro de la serpiente y la vuelve a generar si es asi
+                sonidoComer.play();
+                do {
                     comidaEnSerpiente = false;
-                    comida = {rand() % 40, rand() % 30}; // Nueva posicion aleatoria de la comida
+                    comida = {rand() % 40, rand() % 30}; // Nueva posición aleatoria de la comida
                     for (Punto p : serpiente) {
                         if (p.x == comida.x && p.y == comida.y) {
                             comidaEnSerpiente = true;
                             break;
                         }
                     }
+                    // Comprueba si la comida se genera dentro de los rectángulos de los textos
+                    if (textoPuntuacion.getGlobalBounds().contains(comida.x * 20, comida.y * 20) || textoVelocidad.getGlobalBounds().contains(comida.x * 20, comida.y * 20)) {
+                        comidaEnSerpiente = true;
+                    }
+               } while (comidaEnSerpiente);
+                comidas[i] = comida;
+
+                puntuacion += 10;
+                if (puntuacion % 50 == 0 && velocidad > 30) { // Aumenta la velocidad cada 50 puntos
+                    velocidad -= 5; // Disminuye el tiempo de espera, lo que aumenta la velocidad
+                }
+                if (puntuacion % 100 == 0) { // Desbloquea un logro cada 100 puntos
+                    logros++;
+                    sonidoHito.play();
+                }
+                if (puntuacion % 150 == 0) { // Agrega una bola extra de comida cada 150 puntos
+                    comidas.push_back({rand() % 40, rand() % 30});
+                }
+                comio = true;
+                break;
+            }
+        }
+        if (!comio) {
+            serpiente.erase(serpiente.begin());
+        }
+
+        if (colisionConSerpiente(siguiente, serpiente) || colisionConBorde(siguiente, ventana)) {
+            sonidoColision.play();
+            // Fin del juego
+            juegoIniciado = false;
+            juegoTerminado = true;
+            Text textoFinal;
+            textoFinal.setFont(fuente);
+            textoFinal.setString("PUNTUACIÓN FINAL: " + to_string(puntuacion) + "\nLOGROS: " + to_string(logros) + "\n\n¡Gracias por jugar!");
+            textoFinal.setCharacterSize(50);
+            textoFinal.setFillColor(Color::White);
+            textoFinal.setPosition(ventana.getSize().x / 2 - textoFinal.getGlobalBounds().width / 2, ventana.getSize().y / 4);
+            ventana.clear();
+            ventana.draw(textoFinal);
+            ventana.draw(botonReintentar);
+            ventana.draw(botonFinalizar);
+            ventana.display();
+            while (juegoTerminado) {
+                Event eventoFinal;
+                while (ventana.pollEvent(eventoFinal)) {
+                    if (eventoFinal.type == Event::MouseButtonPressed) {
+                        if (botonReintentar.getGlobalBounds().contains(ventana.mapPixelToCoords(Mouse::getPosition(ventana)))) {
+                            iniciarJuego(juegoIniciado, juegoTerminado, serpiente, comidas, comida, dir, puntuacion, logros);
+                        }
+                        if (botonFinalizar.getGlobalBounds().contains(ventana.mapPixelToCoords(Mouse::getPosition(ventana)))) {
+                            ventana.close();
+                        }
+                    }
+                }
+                if (juegoIniciado) break;
+            }
+            continue;
+        }
+        serpiente.push_back(siguiente);
+
+        ventana.clear();
+        pixel.setFillColor(Color::Green);
+        for (Punto p : serpiente) {
+            pixel.setPosition(p.x * 20, p.y * 20);
+            ventana.draw(pixel);
+        }
+        pixel.setFillColor(Color::Red);
+        for (Punto p : comidas) {
+            pixel.setPosition(p.x * 20, p.y * 20);
+            ventana.draw(pixel);
+        }
+
+        // Actualiza y dibuja la puntuación
+        textoPuntuacion.setString("Puntuación: " + to_string(puntuacion) + "\nLogros: " + to_string(logros));
+        ventana.draw(textoPuntuacion);
+
+        // Dibuja el texto de la velocidad
+        textoVelocidad.setString("\n\n+50 puntos: Velocidad aumentada\n+100 puntos: Logro desbloqueado\n+150 puntos: Otra bola más de comida");
+        ventana.draw(textoVelocidad);
+
+        ventana.display();
+
+        sleep(milliseconds(velocidad));
+    }
+
+    return 0;
+}
+

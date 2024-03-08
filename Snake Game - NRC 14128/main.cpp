@@ -87,87 +87,98 @@ void cargarFuente(Font& fuente) {
 }
 
 
-
+// Función para crear el texto de la puntuación
 void crearTextoPuntuacion(Text& textoPuntuacion, Font& fuente) {
     textoPuntuacion.setFont(fuente);
-    textoPuntuacion.setCharacterSize(45);
-    textoPuntuacion.setFillColor(Color::Red);
-    textoPuntuacion.setPosition(20, 10);
+    textoPuntuacion.setCharacterSize(24);
+    textoPuntuacion.setFillColor(Color::White);
+    textoPuntuacion.setPosition(10, 10);
 }
 
+// Función para crear el texto de la velocidad
 void crearTextoVelocidad(Text& textoVelocidad, Font& fuente) {
     textoVelocidad.setFont(fuente);
     textoVelocidad.setString("\n\n+30 puntos: Velocidad aumentada\n+100 puntos: Logro desbloqueado\n+150 puntos: Otra bola más de comida");
-    textoVelocidad.setCharacterSize(48);
-    textoVelocidad.setFillColor(Color::Blue);
-    textoVelocidad.setPosition(10, 40);
+    textoVelocidad.setCharacterSize(24);
+    textoVelocidad.setFillColor(Color::White);
+    textoVelocidad.setPosition(10, 40); // Posiciona el texto debajo del texto de la puntuación
 }
 
-void crearBotones(Text& botonJugar, Text& botonCerrar, Text& botonReintentar, Text& botonFinalizar, Font& fuente) {
+// Función para crear los botones
+void crearBotones(Text& botonJugar, Text& botonCerrar, Text& botonReintentar, Text& botonFinalizar, Font& fuente, RenderWindow& ventana) {
     botonJugar.setFont(fuente);
     botonJugar.setString("Jugar");
-    botonJugar.setCharacterSize(55);
+    botonJugar.setCharacterSize(50);
     botonJugar.setFillColor(Color::Green);
-    botonJugar.setPosition(150, 350);
+    botonJugar.setPosition(ventana.getSize().x / 2 - botonJugar.getGlobalBounds().width / 2 - 250, ventana.getSize().y / 2 + 350); // Mueve el botón más abajo
 
     botonCerrar.setFont(fuente);
     botonCerrar.setString("Cerrar");
-    botonCerrar.setCharacterSize(55);
+    botonCerrar.setCharacterSize(50);
     botonCerrar.setFillColor(Color::Red);
-    botonCerrar.setPosition(500, 350);
+    botonCerrar.setPosition(ventana.getSize().x / 2 - botonCerrar.getGlobalBounds().width / 2 + 250, ventana.getSize().y / 2 + 350); // Mueve el botón más abajo
 
     botonReintentar.setFont(fuente);
     botonReintentar.setString("Reintentar");
-    botonReintentar.setCharacterSize(55);
+    botonReintentar.setCharacterSize(50);
     botonReintentar.setFillColor(Color::Yellow);
-    botonReintentar.setPosition(100, 200);
+    botonReintentar.setPosition(ventana.getSize().x / 2 - botonReintentar.getGlobalBounds().width / 2 - 200, ventana.getSize().y / 2 + 200);
 
     botonFinalizar.setFont(fuente);
     botonFinalizar.setString("Finalizar");
-    botonFinalizar.setCharacterSize(55);
+    botonFinalizar.setCharacterSize(50);
     botonFinalizar.setFillColor(Color::Red);
-    botonFinalizar.setPosition(500, 200);
+    botonFinalizar.setPosition(ventana.getSize().x / 2 - botonFinalizar.getGlobalBounds().width / 2 + 200, ventana.getSize().y / 2 + 200);
 }
 
-void crearBotonesDificultad(Text& botonNormal, Text& botonDificil, Text& botonMuyDificil, Font& fuente) {
+// Función para crear los botones de dificultad
+void crearBotonesDificultad(Text& botonNormal, Text& botonDificil, Text& botonMuyDificil, Font& fuente, RenderWindow& ventana) {
     botonNormal.setFont(fuente);
     botonNormal.setString("Normal (Velocidad normal)");
-    botonNormal.setCharacterSize(55);
+    botonNormal.setCharacterSize(50);
     botonNormal.setFillColor(Color::White);
+    botonNormal.setPosition(ventana.getSize().x / 2 - botonNormal.getGlobalBounds().width / 2, ventana.getSize().y / 2 - 100);
 
     botonDificil.setFont(fuente);
     botonDificil.setString("Difícil (Velocidad rápida)");
-    botonDificil.setCharacterSize(55);
+    botonDificil.setCharacterSize(50);
     botonDificil.setFillColor(Color::White);
+    botonDificil.setPosition(ventana.getSize().x / 2 - botonDificil.getGlobalBounds().width / 2, ventana.getSize().y / 2);
 
     botonMuyDificil.setFont(fuente);
     botonMuyDificil.setString("Muy difícil (Velocidad muy rápida)");
-    botonMuyDificil.setCharacterSize(45);
+    botonMuyDificil.setCharacterSize(50);
     botonMuyDificil.setFillColor(Color::White);
+    botonMuyDificil.setPosition(ventana.getSize().x / 2 - botonMuyDificil.getGlobalBounds().width / 2, ventana.getSize().y / 2 + 100);
 }
 
-void crearTextoInicio(Text& textoInicio1, Text& textoInicio2, Font& fuente) {
+
+// Función para crear el texto de la pantalla de inicio
+void crearTextoInicio(Text& textoInicio1, Text& textoInicio2, Font& fuente, RenderWindow& ventana) {
     textoInicio1.setFont(fuente);
     textoInicio1.setString("JUEGO DE LA SERPIENTE\n\n Proyecto Tercer Parcial\n\n              NRC 14180");
     textoInicio1.setCharacterSize(50);
     textoInicio1.setFillColor(Color::White);
+    textoInicio1.setPosition(ventana.getSize().x / 2 - textoInicio1.getGlobalBounds().width / 2, ventana.getSize().y / 9);
 
     textoInicio2.setFont(fuente);
     textoInicio2.setString("Desarrollado por:\n\nColina Morales Mateo Rubén\nCedeño Zapata Jhois Micael\nChancusig Guaman Erick Ariel\nRamírez Cevallos Carlos Estéfano");
     textoInicio2.setCharacterSize(50);
     textoInicio2.setFillColor(Color::White);
+    textoInicio2.setPosition(ventana.getSize().x / 2 - 500 - textoInicio2.getGlobalBounds().width / 2, ventana.getSize().y / 2.3);
 }
 
+// Función para iniciar el juego
 void iniciarJuego(bool& juegoIniciado, bool& juegoTerminado, vector<Punto>& serpiente, vector<Punto>& comidas, Punto& comida, Punto& dir, int& puntuacion, int& logros) {
     juegoIniciado = true;
     juegoTerminado = false;
     serpiente.clear();
-    serpiente.push_back({rand() % 40, rand() % 30});
+    serpiente.push_back({rand() % 40, rand() % 30}); // Posición inicial aleatoria de la serpiente
     comidas.clear();
     bool comidaEnSerpiente;
     do {
         comidaEnSerpiente = false;
-        comida = {rand() % 40, rand() % 30};
+        comida = {rand() % 40, rand() % 30}; // Posición inicial aleatoria de la comida
         for (Punto p : serpiente) {
             if (p.x == comida.x && p.y == comida.y) {
                 comidaEnSerpiente = true;
@@ -181,8 +192,6 @@ void iniciarJuego(bool& juegoIniciado, bool& juegoTerminado, vector<Punto>& serp
     puntuacion = 0;
     logros = 0;
 }
-
-
 
 
 // Función principal

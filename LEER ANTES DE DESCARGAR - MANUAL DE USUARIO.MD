@@ -13,3 +13,8 @@ Antes de comenzar con la instalación, asegúrate de tener los siguientes requis
 Descarga de SFML: https://www.sfml-dev.org/
 Instalación: Video manual de usuario
 
+Descarga el archivo comprimido con todos los archivos necesarios, y ejecuta el proyecto
+
+Listo. Disfruta del videojuego.
+
+

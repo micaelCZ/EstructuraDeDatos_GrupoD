@@ -18,6 +18,7 @@ Antes de comenzar con la instalación, asegúrate de tener los siguientes requis
 
 1. Code::Blocks instalado correctamente.
    - [Descargar Code::Blocks](https://www.codeblocks.org/downloads/)
+   - https://www.youtube.com/watch?v=io6BPh66ti0&pp=ygUZY29tbyBkZXNjYXJnYXIgY29kZWJsb2Nrcw%3D%3D
 
 2. SFML 2.5.1 instalado correctamente.
    - [Descargar SFML](https://www.sfml-dev.org/download.php)

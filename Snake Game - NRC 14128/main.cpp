@@ -109,13 +109,13 @@ void crearBotones(Text& botonJugar, Text& botonCerrar, Text& botonReintentar, Te
     botonJugar.setString("Jugar");
     botonJugar.setCharacterSize(50);
     botonJugar.setFillColor(Color::Green);
-    botonJugar.setPosition(ventana.getSize().x / 2 - botonJugar.getGlobalBounds().width / 2 - 250, ventana.getSize().y / 2 + 350); // Mueve el botón más abajo
+    botonJugar.setPosition(ventana.getSize().x / 2 - botonJugar.getGlobalBounds().width / 2 - 250, ventana.getSize().y / 2 + 250); // Mueve el botón más abajo
 
     botonCerrar.setFont(fuente);
     botonCerrar.setString("Cerrar");
     botonCerrar.setCharacterSize(50);
     botonCerrar.setFillColor(Color::Red);
-    botonCerrar.setPosition(ventana.getSize().x / 2 - botonCerrar.getGlobalBounds().width / 2 + 250, ventana.getSize().y / 2 + 350); // Mueve el botón más abajo
+    botonCerrar.setPosition(ventana.getSize().x / 2 - botonCerrar.getGlobalBounds().width / 2 + 250, ventana.getSize().y / 2 + 250); // Mueve el botón más abajo
 
     botonReintentar.setFont(fuente);
     botonReintentar.setString("Reintentar");
@@ -155,17 +155,16 @@ void crearBotonesDificultad(Text& botonNormal, Text& botonDificil, Text& botonMu
 void crearTextoInicio(Text& textoInicio1, Text& textoInicio2, Font& fuente, RenderWindow& ventana) {
     textoInicio1.setFont(fuente);
     textoInicio1.setString("JUEGO DE LA SERPIENTE\n\n Proyecto Tercer Parcial\n\n              NRC 14180");
-    textoInicio1.setCharacterSize(50);
+    textoInicio1.setCharacterSize(30);
     textoInicio1.setFillColor(Color::White);
-    textoInicio1.setPosition(ventana.getSize().x / 2 - textoInicio1.getGlobalBounds().width / 2, ventana.getSize().y / 9);
+    textoInicio1.setPosition(ventana.getSize().x / 2 - textoInicio1.getGlobalBounds().width / 2, ventana.getSize().y / 13);
 
     textoInicio2.setFont(fuente);
-    textoInicio2.setString("Desarrollado por:\n\nColina Morales Mateo Rubén\nCedeño Zapata Jhois Micael\nChancusig Guaman Erick Ariel\nRamírez Cevallos Carlos Estéfano");
-    textoInicio2.setCharacterSize(50);
+    textoInicio2.setString("Desarrollado por:\n\nColina Morales Mateo Ruben\nCedeno Zapata Jhois Micael\nChancusig Guaman Erick Ariel\nRamirez Cevallos Carlos Estefano");
+    textoInicio2.setCharacterSize(30);
     textoInicio2.setFillColor(Color::White);
-    textoInicio2.setPosition(ventana.getSize().x / 2 - 500 - textoInicio2.getGlobalBounds().width / 2, ventana.getSize().y / 2.3);
+    textoInicio2.setPosition(ventana.getSize().x / 2 - 300 - textoInicio2.getGlobalBounds().width / 2, ventana.getSize().y / 2.3);
 }
-
 // Función para iniciar el juego
 void iniciarJuego(bool& juegoIniciado, bool& juegoTerminado, vector<Punto>& serpiente, vector<Punto>& comidas, Punto& comida, Punto& dir, int& puntuacion, int& logros) {
     juegoIniciado = true;

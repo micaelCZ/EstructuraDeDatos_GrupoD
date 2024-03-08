@@ -97,7 +97,7 @@ void crearTextoPuntuacion(Text& textoPuntuacion, Font& fuente) {
 // Función para crear el texto de la velocidad
 void crearTextoVelocidad(Text& textoVelocidad, Font& fuente) {
     textoVelocidad.setFont(fuente);
-    textoVelocidad.setString("\n\n+50 puntos: Velocidad aumentada\n+100 puntos: Logro desbloqueado\n+150 puntos: Otra bola más de comida");
+    textoVelocidad.setString("\n\n+50 puntos: Velocidad aumentada\n+100 puntos: Logro desbloqueado\n+150 puntos: Otra bola mas de comida");
     textoVelocidad.setCharacterSize(24);
     textoVelocidad.setFillColor(Color::White);
     textoVelocidad.setPosition(10, 40); // Posiciona el texto debajo del texto de la puntuación
@@ -139,13 +139,13 @@ void crearBotonesDificultad(Text& botonNormal, Text& botonDificil, Text& botonMu
     botonNormal.setPosition(ventana.getSize().x / 2 - botonNormal.getGlobalBounds().width / 2, ventana.getSize().y / 2 - 100);
 
     botonDificil.setFont(fuente);
-    botonDificil.setString("Difícil (Velocidad rápida)");
+    botonDificil.setString("Dificil (Velocidad rápida)");
     botonDificil.setCharacterSize(50);
     botonDificil.setFillColor(Color::White);
     botonDificil.setPosition(ventana.getSize().x / 2 - botonDificil.getGlobalBounds().width / 2, ventana.getSize().y / 2);
 
     botonMuyDificil.setFont(fuente);
-    botonMuyDificil.setString("Muy difícil (Velocidad muy rápida)");
+    botonMuyDificil.setString("Muy dificil (Velocidad muy rapida)");
     botonMuyDificil.setCharacterSize(50);
     botonMuyDificil.setFillColor(Color::White);
     botonMuyDificil.setPosition(ventana.getSize().x / 2 - botonMuyDificil.getGlobalBounds().width / 2, ventana.getSize().y / 2 + 100);
@@ -355,7 +355,7 @@ int main() {
             juegoTerminado = true;
             Text textoFinal;
             textoFinal.setFont(fuente);
-            textoFinal.setString("PUNTUACIÓN FINAL: " + to_string(puntuacion) + "\nLOGROS: " + to_string(logros) + "\n\n¡Gracias por jugar!");
+            textoFinal.setString("PUNTUACION FINAL: " + to_string(puntuacion) + "\nLOGROS: " + to_string(logros) + "\n\nGracias por jugar!");
             textoFinal.setCharacterSize(50);
             textoFinal.setFillColor(Color::White);
             textoFinal.setPosition(ventana.getSize().x / 2 - textoFinal.getGlobalBounds().width / 2, ventana.getSize().y / 4);
@@ -395,11 +395,11 @@ int main() {
         }
 
         // Actualiza y dibuja la puntuación
-        textoPuntuacion.setString("Puntuación: " + to_string(puntuacion) + "\nLogros: " + to_string(logros));
+        textoPuntuacion.setString("Puntuacion: " + to_string(puntuacion) + "\nLogros: " + to_string(logros));
         ventana.draw(textoPuntuacion);
 
         // Dibuja el texto de la velocidad
-        textoVelocidad.setString("\n\n+50 puntos: Velocidad aumentada\n+100 puntos: Logro desbloqueado\n+150 puntos: Otra bola más de comida");
+        textoVelocidad.setString("\n\n+50 puntos: Velocidad aumentada\n+100 puntos: Logro desbloqueado\n+150 puntos: Otra bola mas de comida");
         ventana.draw(textoVelocidad);
 
         ventana.display();

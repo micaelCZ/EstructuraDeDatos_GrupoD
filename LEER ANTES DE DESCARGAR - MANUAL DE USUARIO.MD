@@ -23,7 +23,8 @@ Antes de comenzar con la instalación, asegúrate de tener los siguientes requis
 2. SFML 2.5.1 instalado correctamente.
    - [Descargar SFML](https://www.sfml-dev.org/download.php)
    - Instalación: Sigue el video manual de usuario incluido en este repositorio.
-   - VIDEO MANUAL: https://youtu.be/QEtWT_6wNVc
+3. VIDEO MANUAL
+   - https://youtu.be/QEtWT_6wNVc
 
 ## Instalación
 
